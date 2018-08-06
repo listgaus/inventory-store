@@ -1,0 +1,38 @@
+[
+  {
+    "id": "0",
+    "name": "Apple",
+    "description": "An apple a day...",
+    "price": "2"
+  },
+  {
+    "id": "1",
+    "name": "Coffee Beans",
+    "description": "Best coffee beans ever",
+    "price": "100"
+  },
+  {
+    "id": "2",
+    "name": "Red Wine",
+    "description": "Cabarnet sauvignon",
+    "price": "89"
+  },
+  {
+    "id": "3",
+    "name": "Milk",
+    "description": "organic milk",
+    "price": "10"
+  },
+  {
+    "id": "4",
+    "name": "Chocolate Cake",
+    "description": "Feels like home taste",
+    "price": "27"
+  },
+  {
+    "id": "5",
+    "name": "Mineral water",
+    "description": "Straight from the water fountain",
+    "price": "5"
+  }
+]

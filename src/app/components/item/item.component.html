@@ -1,0 +1,18 @@
+<div class="single-book-container">
+  <div class="book-body">
+    <div class="book-image">
+      <img class="card-img-top"
+           src="../../../assets/images/item.jpg"
+           alt="Card image cap">
+    </div>
+    <div class="book-info">
+      <p class="title">{{item.name}}</p>
+      <p class="authors"> Price: {{item.price | currency}}</p>
+      <p class="authors">Description: {{item.description}}</p>
+    </div>
+    <div class="edit-button">
+      <i (click)="openEditPopup()" class="fas fa-ellipsis-v btn"></i>
+    </div>
+  </div>
+</div>
+

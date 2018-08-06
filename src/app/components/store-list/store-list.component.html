@@ -1,0 +1,116 @@
+<div class="books-list row">
+  <div class="nav-bar">
+    <ul class="nav">
+      <li class="search-bar-container fas fa-search">
+        <search-bar [(value)]="searchItemText" (valueChange)="filterItems()"></search-bar>
+      </li>
+      <div class="row pull-right">
+        <li class="btn btn-outline-success right-btn" (click)="openModal(add)"><i class="fas fa-plus-circle">Add Item</i>
+        </li>
+      </div>
+    </ul>
+  </div>
+
+  <hr>
+
+  <img *ngIf="isLoading" class="loading pull-right" src="/assets/images/ajax-loader.gif" alt="Loading data...">
+
+  <div class="single-book col-sm-5" *ngFor="let item of items ">
+    <item *ngIf="!isLoading" [item]="item" (edit)="openModal(edit);updateCurrentItem($event)"></item>
+  </div>
+</div>
+
+
+<ng-template #edit>
+  <div class="edit-popup">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit item "{{currentItem.name}}"</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form #edit="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   [(ngModel)]="currentItem.name"
+                   #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" #description="ngModel"
+                   [(ngModel)]="currentItem.description">
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price"
+                   #price="ngModel" [(ngModel)]="currentItem.price">
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary save-button" (click)="updateItem()">
+        Save
+      </button>
+      <!--<button type="button" class="btn btn-danger pull-left delete-button" (click)="deleteItem($event);modalRef.hide()">-->
+      <button type="button" class="btn btn-danger pull-left delete-button" (click)="modalRef.hide();openModal(delete)">
+        Delete
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #delete>
+  <div class="modal-body text-center">
+    <p>Do you want to delete {{currentItem.name}}?</p>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide();deleteItem(currentItem)">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="modalRef.hide()">No</button>
+  </div>
+</ng-template>
+
+
+<ng-template #add>
+  <div class="edit-popup">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add A New Item</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="container">
+        <form #edit="ngForm">
+          <div class="form-group">
+            <label for="newname">Name</label>
+            <input type="text" class="form-control" id="newname" name="newname" [(ngModel)]="newItem.name">
+          </div>
+
+          <div class="form-group">
+            <label for="newdescription">Description</label>
+            <input type="text" class="form-control" id="newdescription" name="newdescription" [(ngModel)]="newItem.description">
+          </div>
+
+          <div class="form-group">
+            <label for="newprice">Price</label>
+            <input type="number" class="form-control" id="newprice" name="newprice" [(ngModel)]="newItem.price">
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary save-button"
+              (click)="addNewItem();modalRef.hide();">Add
+      </button>
+      <button type="button" class="btn btn-danger pull-left delete-button" (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
