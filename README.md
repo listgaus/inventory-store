@@ -12,3 +12,4 @@ After several failed tryouts to deploy my project to github pages using angular-
 ## My deployed project can be found here:
  https://greatest-books.herokuapp.com/ 
 
+"# inventory-store" 
